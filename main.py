@@ -64,8 +64,16 @@ class Cliente (Pessoa):
         while True:
             print('\n===================================')
             print('\n  REGISTRE-SE')
-            nome=(input('Nome:'))
-            self.nome=nome
+            try:
+              nome= input('Nome:')
+              self.nome=nome
+              for x in nome: #Definimos uma variável(nome) para armazenar os nomes e usamos o for para percorrer os elementos armazenados na variável nome e atribuir o valor do item à variável x. 
+                if x.isalpha()==False:#Utilizamos o if para verificar se a o item atribuído a variável x continha apenas letras e para isso utilizamos o manipulador isalpha.
+                  if ' ' not in x:
+                    raise ValueError  #Caso o valor atribuído a x for númerico, abre uma excessão.
+            except ValueError:
+              print("\tEste campo aceita apenas letras, tente de novo...")
+              break
             email=input('Email:')
             self.email=email
             senha= getpass.getpass('Digite sua senha:')
