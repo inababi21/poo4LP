@@ -64,7 +64,7 @@ class Cliente (Pessoa):
         while True:
             print('\n===================================')
             print('\n  REGISTRE-SE')
-            nome= input('Nome:')
+            nome=(input('Nome:'))
             self.nome=nome
             email=input('Email:')
             self.email=email
