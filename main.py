@@ -64,8 +64,16 @@ class Cliente (Pessoa):
         while True:
             print('\n===================================')
             print('\n  REGISTRE-SE')
-            nome= input('Nome:')
-            self.nome=nome
+            try:
+              nome= input('Nome:')
+              self.nome=nome
+              for x in nome: #Definimos uma variável(nome) para armazenar os nomes e usamos o for para percorrer os elementos armazenados na variável nome e atribuir o valor do item à variável x. 
+                if x.isalpha()==False:#Utilizamos o if para verificar se a o item atribuído a variável x continha apenas letras e para isso utilizamos o manipulador isalpha.
+                  if ' ' not in x:
+                    raise ValueError  #Caso o valor atribuído a x for númerico, abre uma excessão.
+            except ValueError:
+              print("\tEste campo aceita apenas letras, tente de novo...")
+              break
             email=input('Email:')
             self.email=email
             senha= getpass.getpass('Digite sua senha:')
@@ -73,8 +81,12 @@ class Cliente (Pessoa):
             senha2= getpass.getpass('Confirme sua senha:')
             cpf = input('CPF: ')
             self.cpf = cpf
-            tel = input('Telefone: ')
-            self.tel = tel
+            try:
+              tel = int(input('Telefone: '))
+              self.tel = tel
+            except ValueError:
+              print("APENAS NUMEROS SÃO PERMITIDOS NESTE CAMPO (TEL), tente novamente!!")
+              break
             endereco=input('Endereço: ')
             self.endereco= endereco
             if senha == senha2:
@@ -83,7 +95,7 @@ class Cliente (Pessoa):
                 print('\n===================================')
                 print(f'\n CADASTRO REALIZADO COM SUCESSO, {self.nome}!|')
                 break
-# caso a senha ou a senha não constar nas listas dentro do programa, esses avisos serão postos ao um usário que tentou realizar esse login mal sucedido   
+#caso a senha ou a senha não constar nas listas dentro do programa, esses avisos serão postos ao um usário que tentou realizar esse login mal sucedido   
             else:
                 print('\n Sua senha não confere!')
                 print('\n Faça seu cadastro novamente!')
